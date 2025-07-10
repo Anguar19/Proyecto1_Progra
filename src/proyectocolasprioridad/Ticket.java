@@ -58,7 +58,7 @@ public class Ticket {
         this.clienteAsociado = clienteAsociado;
     }
 
-    // Métodos para mostrar el ticket( cambiable a un jFramw)
+    // Métodos para mostrar el ticket( cambiable a un jOpcion)
     public void imprimirTicket() {
         System.out.println(this.toString());
     }
