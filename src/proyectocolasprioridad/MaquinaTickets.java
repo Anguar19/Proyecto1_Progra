@@ -12,7 +12,7 @@ public class MaquinaTickets {
     private int contador;
     private char prioridadActual = 'A'; // Prioridad por defecto
 
-    // Constructor
+    // Constructor de la clase maquina 
     public MaquinaTickets() {
         this.contador = 0;
     }
