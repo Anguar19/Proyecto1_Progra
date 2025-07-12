@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
  * @author Anguar Alberto Rodriguez Fonseca
  */
 public class Cliente {
+
     private int id;//Varaible id
     private int cantidadAsusntos;// Variable cantidadAsusntos
     private int tiempoTolerancia;// Variable tiempoTolerancia
@@ -70,6 +71,7 @@ public class Cliente {
      * Obtener la informacion
      * @return 
      */
+
     public int getId() {
         return id;
     }
