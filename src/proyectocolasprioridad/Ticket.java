@@ -8,68 +8,82 @@ package proyectocolasprioridad;
  *
  * @author Franklin Castillo Umaña
  */
-import java.time.LocalDateTime;
+
 
 public class Ticket {
-    private int numero;
-    private char letraPrioridad;
-    private LocalDateTime horaGeneracion;
-    private Cliente clienteAsociado;
+    private String numeroTicket;
+    private String nombreCliente;
+    public char prioridadCliente;
+    private long GeneracionTicket;
+    private int tolerancia;
+    private int tiempoDelTramite;
 
-    // Constructor
-    public Ticket(int numero, char letraPrioridad, Cliente clienteAsociado) {
-        this.numero = numero;
-        this.letraPrioridad = letraPrioridad;
-        this.horaGeneracion = LocalDateTime.now();
-        this.clienteAsociado = clienteAsociado;
+    public Ticket(String numeroTicket, String nombreCliente, char prioridadCliente, long GeneracionTicket, int tolerancia, int tiempoDelTramite) {
+        this.numeroTicket = numeroTicket;
+        this.nombreCliente = nombreCliente;
+        this.prioridadCliente = prioridadCliente;
+        this.GeneracionTicket = GeneracionTicket;
+        this.tolerancia = tolerancia;
+        this.tiempoDelTramite = tiempoDelTramite;
     }
 
-    // Getters
-    public int getNumero() {
-        return numero;
+    public String getNumeroTicket() {
+        return numeroTicket;
     }
 
-    public char getLetraPrioridad() {
-        return letraPrioridad;
+    public void setNumeroTicket(String numeroTicket) {
+        this.numeroTicket = numeroTicket;
     }
 
-    public LocalDateTime getHoraGeneracion() {
-        return horaGeneracion;
+    public String getNombreCliente() {
+        return nombreCliente;
     }
 
-    public Cliente getClienteAsociado() {
-        return clienteAsociado;
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
     }
 
-    // Setters
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public char getPrioridadCliente() {
+        return prioridadCliente;
     }
 
-    public void setLetraPrioridad(char letraPrioridad) {
-        this.letraPrioridad = letraPrioridad;
+    public void setPrioridadCliente(char prioridadCliente) {
+        this.prioridadCliente = prioridadCliente;
     }
 
-    public void setHoraGeneracion(LocalDateTime horaGeneracion) {
-        this.horaGeneracion = horaGeneracion;
+    public long getGeneracionTicket() {
+        return GeneracionTicket;
     }
 
-    public void setClienteAsociado(Cliente clienteAsociado) {
-        this.clienteAsociado = clienteAsociado;
+    public void setGeneracionTicket(long GeneracionTicket) {
+        this.GeneracionTicket = GeneracionTicket;
     }
 
-    // Métodos para mostrar el ticket( cambiable a un jOpcion)
-    public void imprimirTicket() {
-        System.out.println(this.toString());
+    public int getTolerancia() {
+        return tolerancia;
+    }
+
+    public void setTolerancia(int tolerancia) {
+        this.tolerancia = tolerancia;
+    }
+
+    public int getTiempoDelTramite() {
+        return tiempoDelTramite;
+    }
+
+    public void setTiempoDelTramite(int tiempoDelTramite) {
+        this.tiempoDelTramite = tiempoDelTramite;
+    }
+    
+    public boolean haExpirado() {
+        long tiempoTranscurrido = (System.currentTimeMillis() - GeneracionTicket) / (100 * 60);
+        return tiempoTranscurrido >= tolerancia;
     }
 
     @Override
     public String toString() {
-        return " TICKET\n" +
-               "Número: " + numero + "\n" +
-               "Prioridad: " + letraPrioridad + "\n" +
-               "Hora generación: " + horaGeneracion + "\n" +
-               "Cliente: " + clienteAsociado.getNombre() + "\n" ;
-               
+        return "Ticket{" + "numeroTicket=" + numeroTicket + ", nombreCliente=" + nombreCliente + ", prioridadCliente=" + prioridadCliente + ", GeneracionTicket=" + GeneracionTicket + ", tolerancia=" + tolerancia + ", tiempoDelTramite=" + tiempoDelTramite + '}';
     }
+    
+    
 }
