@@ -82,8 +82,12 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket{" + "numeroTicket=" + numeroTicket + ", nombreCliente=" + nombreCliente + ", prioridadCliente=" + prioridadCliente + ", GeneracionTicket=" + GeneracionTicket + ", tolerancia=" + tolerancia + ", tiempoDelTramite=" + tiempoDelTramite + '}';
-    }
+      return "Número: " + numeroTicket +
+           ", Cliente: " + nombreCliente +
+           ", Prioridad: " + prioridadCliente +
+           ", Tolerancia: " + tolerancia + " min" +
+           ", Trámite: " + tiempoDelTramite + " min";//
+}
     
     
 }
