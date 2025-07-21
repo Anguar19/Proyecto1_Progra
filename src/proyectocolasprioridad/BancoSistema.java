@@ -110,31 +110,55 @@ public class BancoSistema {
     }
 
     public String obtenerEstadoColas() {
-        String texto = "=== ESTADO DE COLAS ===\n\n";
-        texto += "Clientes en fila: " + cola.getTamaño() + "/25\n\n";
+    String texto = "=== ESTADO DE COLAS ===\n\n";
+    texto += "Clientes en fila: " + cola.getTamaño() + "/25\n\n";
 
-        texto += "Estado de Cajeros:\n";
-        for (int i = 0; i < cajeros.size(); i++) {
-            CajeroBanco caj = cajeros.get(i);
-            texto += "- " + caj.getNombre() + ": ";
-            texto += (caj.isDisponibilidad() ? "Disponible" : "Ocupado");
-            texto += " (Atendidos: " + caj.getClientesAtendidos() + ")\n";
+    texto += "Estado de Cajeros:\n";
+    for (CajeroBanco caj : cajeros) {
+        texto += "- " + caj.getNombre() + ": ";
+        texto += (caj.isDisponibilidad() ? "Disponible" : "Ocupado");
+
+        List<Cliente> atendidos = caj.getClientesAtendidos();
+        if (atendidos.isEmpty()) {
+            texto += " (Atendidos: sin registros)\n";
+        } else {
+            texto += " (Atendidos: ";
+            for (Cliente cliente : atendidos) {
+                texto += cliente.toString() + "; ";
+            }
+            texto = texto.substring(0, texto.length() - 2); // Elimina último "; "
+            texto += ")\n";
         }
-
-        texto += "- " + plataformaServicios.getNombre() + ": ";
-        texto += (plataformaServicios.isDisponibilidad() ? "Disponible" : "Ocupado");
-        texto += " (Atendidos: " + plataformaServicios.getClientesAtendidos() + ")\n\n";
-
-        texto += "Próximos en fila:\n";
-        List<Ticket> lista = cola.obtenerTicketsEnCola();
-        int cantidad = Math.min(5, lista.size());
-        for (int i = 0; i < cantidad; i++) {
-            Ticket t = lista.get(i);
-            texto += (i + 1) + ". " + t.getNumeroTicket() + " - " + t.getNombreCliente() + "\n";
-        }
-
-        return texto;
     }
+
+    // Plataforma de Servicios
+    texto += "- " + plataformaServicios.getNombre() + ": ";
+    texto += (plataformaServicios.isDisponibilidad() ? "Disponible" : "Ocupado");
+
+    List<Cliente> atendidosPlataforma = plataformaServicios.getClientesAtendidos();
+    if (atendidosPlataforma.isEmpty()) {
+        texto += " (Atendidos: sin registros)\n";
+    } else {
+        texto += " (Atendidos: ";
+        for (Cliente cliente : atendidosPlataforma) {
+            texto += cliente.toString() + "; ";
+        }
+        texto = texto.substring(0, texto.length() - 2); // Elimina último "; "
+        texto += ")\n";
+    }
+
+    // Próximos en fila
+    texto += "\nPróximos en fila:\n";
+    List<Ticket> lista = cola.obtenerTicketsEnCola();
+    int cantidad = Math.min(5, lista.size());
+    for (int i = 0; i < cantidad; i++) {
+        Ticket t = lista.get(i);
+        texto += (i + 1) + ". " + t.getNumeroTicket() + " - " + t.getNombreCliente() + "\n";
+    }
+
+    return texto;
+}
+
 
     public String generarReporte(String tipo) {
         if (tipo.equals("Clientes Atendidos por Cajero")) {
