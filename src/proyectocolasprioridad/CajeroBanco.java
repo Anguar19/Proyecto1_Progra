@@ -20,10 +20,11 @@ public class CajeroBanco {
    
 
     public CajeroBanco(String nombre) {
-        this.nombre = nombre;
-        this.disponible = true;
-        this.totalClientesAtendidos = 0;
-    }
+    this.nombre = nombre;
+    this.disponible = true;
+    this.totalClientesAtendidos = 0;
+    this.clientesAtendidos = new ArrayList<>(); 
+}
 
     public String getNombre() {
         return nombre;
