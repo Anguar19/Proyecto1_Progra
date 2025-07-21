@@ -72,8 +72,8 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "nombre=" + nombre + ", ticket=" + ticket + ", atencion=" + atencion + ", inicioAtencion=" + inicioAtencion + ", finAtencion=" + finAtencion + '}';
-    }
+        return "Nombre: " + nombre + ", Ticket: " + ticket + ", Atendido: " + atencion;
+}
     
     
 }
