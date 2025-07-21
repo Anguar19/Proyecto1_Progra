@@ -154,14 +154,32 @@ public class BancoSistema {
     }
 
     private String reporteClientesPorCajero() {
-        String texto = "=== CLIENTES ATENDIDOS POR CAJERO ===\n\n";
-        for (int i = 0; i < cajeros.size(); i++) {
-            CajeroBanco c = cajeros.get(i);
-            texto += c.getNombre() + ": " + c.getClientesAtendidos() + "\n";
+    String texto = "=== CLIENTES ATENDIDOS POR CAJERO ===\n\n";
+    
+    for (int i = 0; i < cajeros.size(); i++) {
+        CajeroBanco c = cajeros.get(i);
+        texto += c.getNombre() + ":\n";
+        
+        if (c.getClientesAtendidos().isEmpty()) {
+            texto += "  (Sin clientes atendidos)\n";
+        } else {
+            for (Cliente cliente : c.getClientesAtendidos()) {
+                texto += "  - " + cliente.toString() + "\n";
+            }
         }
-        texto += plataformaServicios.getNombre() + ": " + plataformaServicios.getClientesAtendidos() + "\n";
-        return texto;
     }
+
+    texto += plataformaServicios.getNombre() + ":\n";
+    if (plataformaServicios.getClientesAtendidos().isEmpty()) {
+        texto += "  (Sin clientes atendidos)\n";
+    } else {
+        for (Cliente cliente : plataformaServicios.getClientesAtendidos()) {
+            texto += "  - " + cliente.toString() + "\n";
+        }
+    }
+
+    return texto;
+}
 
     private String reporteTiempoEsperaPorCajero() {
         String texto = "=== PROMEDIO DE TIEMPO DE ESPERA POR CAJERO ===\n\n";
