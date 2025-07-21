@@ -126,12 +126,11 @@ public class BancoSistema {
             for (Cliente cliente : atendidos) {
                 texto += cliente.toString() + "; ";
             }
-            texto = texto.substring(0, texto.length() - 2); // Elimina último "; "
+            texto = texto.substring(0, texto.length() - 2); 
             texto += ")\n";
         }
     }
 
-    // Plataforma de Servicios
     texto += "- " + plataformaServicios.getNombre() + ": ";
     texto += (plataformaServicios.isDisponibilidad() ? "Disponible" : "Ocupado");
 
@@ -143,11 +142,10 @@ public class BancoSistema {
         for (Cliente cliente : atendidosPlataforma) {
             texto += cliente.toString() + "; ";
         }
-        texto = texto.substring(0, texto.length() - 2); // Elimina último "; "
+        texto = texto.substring(0, texto.length() - 2); 
         texto += ")\n";
     }
 
-    // Próximos en fila
     texto += "\nPróximos en fila:\n";
     List<Ticket> lista = cola.obtenerTicketsEnCola();
     int cantidad = Math.min(5, lista.size());
