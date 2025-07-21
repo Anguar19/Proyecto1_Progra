@@ -15,7 +15,7 @@ public class CajeroBanco {
    private Cliente clienteActual;
    private List<Cliente> clientesAtendidos;
    private long inicioAtencion;
-   private long totalClientesAtendidos;
+   private long totalClientesAtendidos;//correcion
 
    
 
