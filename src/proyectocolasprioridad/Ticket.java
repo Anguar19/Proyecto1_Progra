@@ -86,7 +86,7 @@ public class Ticket {
            ", Cliente: " + nombreCliente +
            ", Prioridad: " + prioridadCliente +
            ", Tolerancia: " + tolerancia + " min" +
-           ", Trámite: " + tiempoDelTramite + " min";
+           ", Trámite: " + tiempoDelTramite + " min";//
 }
     
     
